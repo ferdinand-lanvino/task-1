@@ -56,21 +56,24 @@ export default {
 
       const tempSchedules = []
       //Shift A dimulai jam 6 pagi, Shift B dimulai jam 6 sore
-      const startTime = new Date().setHours(this.shift == 'A' ? 6 : 18, 0, 0)
+      let startTime = new Date().setHours(this.shift == 'A' ? 6 : 18, 0, 0)
       //Terdapat jam istirahat setiap 3 jam, tampilkan jadwal kerja secara penuh
       //Jika jam kerja 3 jam berarti, ada 3 jam kerja dan 1 jam istirahat
+      
       for (let i = 0; i < this.workingHour; i++) {
+        tempSchedules.push({
+          time: new Date(startTime),
+          type: 'Bekerja'
+        })
+        startTime += 60 * 60 * 1000 // Tambahkan 1 jam
         //Jika jam kerja 3 jam berarti, ada 3 jam kerja dan 1 jam istirahat
-        if (i % 3 == 0 && i != 0) {
+        if (i % 3 == 2 && i != this.workingHour - 1) {
           tempSchedules.push({
-            time: new Date(startTime + i * 60 * 60 * 1000),
+            time: new Date(startTime),
             type: 'Istirahat'
           })
+          startTime += 60 * 60 * 1000 // Tambahkan 1 jam istirahat
         }
-        tempSchedules.push({
-          time: new Date(startTime + i * 60 * 60 * 1000),
-          type: this.shift == 'A' ? 'Kerja' : 'Kerja'
-        })
       }
       //Tampilkan jadwal kerja secara penuh
       this.schedules = tempSchedules.map((schedule) => {
