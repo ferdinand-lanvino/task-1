@@ -29,6 +29,10 @@
       </div>
     </div>
   </div>
+
+  <footer>
+    <p><a href="https://github.com/ferdinand-lanvino/task-1">GitHub Repository</a></p>
+  </footer>
 </template>
 
 <script>
