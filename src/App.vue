@@ -66,7 +66,7 @@ export default {
           type: 'Bekerja'
         })
         startTime += 60 * 60 * 1000 // Tambahkan 1 jam
-        //Jika jam kerja 3 jam berarti, ada 3 jam kerja dan 1 jam istirahat
+        //Cek apakah sudah 3 jam kerja
         if (i % 3 == 2 && i != this.workingHour - 1) {
           tempSchedules.push({
             time: new Date(startTime),
